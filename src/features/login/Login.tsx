@@ -10,7 +10,7 @@ export default function Login() {
   return (
     
     <section className="w-full max-w-md mx-auto">
-        <div className='bg-white dark:bg-background-dark/80 rounded-xl shadow-lg p-8'>
+        <div className='bg-white dark:bg-background/80 rounded-xl shadow-lg p-8'>
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Welcome Back</h2>
                 <p className="text-gray-500 dark:text-gray-400 mt-2">Log in to continue your adventure.</p>

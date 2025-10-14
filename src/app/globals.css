@@ -3,11 +3,15 @@
 :root {
   --background: #f6f7f8;
   --foreground: #171717;
+  --primary: #13a4ec; /* color principal en modo claro */
+  --label: #6b7280;   /* gris-500 aprox para textos secundarios en claro */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-label: var(--label);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -27,16 +31,9 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
-.bg-primary {
-  background-color: var(--primary);
-}
-
-.text-primary {
-    --tw-text-opacity: 1;
-    color: var(--primary);
-}
-
-.dark\:text-gray-300:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: var(--label);
-}
+/* Si prefieres confiar en los tokens de Tailwind v4 (recomendado),
+   puedes usar directamente `bg-primary`, `text-primary`, `text-label`, etc.
+   Estas utilidades se generan por @theme inline. Si aún quieres helpers
+   manuales, puedes mantener estas clases utilitarias: */
+.bg-primary { background-color: var(--primary); }
+.text-primary { color: var(--primary); }
