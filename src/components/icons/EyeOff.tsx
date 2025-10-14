@@ -11,33 +11,28 @@ export function EyeOff({ className = "h-5 w-5", ...props }: IconProps) {
       className={className}
       {...props}
     >
+      {/* Mismo ojo que Eye */}
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
-        d="M3 3l18 18"
+        d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 5 12 5c4.64 0 8.577 2.51 9.964 6.678.07.214.07.43 0 .644C20.577 16.49 16.64 19 12 19c-4.64 0-8.577-2.51-9.964-6.678z"
       />
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
-        d="M10.584 10.587A3 3 0 0013.5 13.5"
+        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
       />
+      {/* Tachón diagonal */}
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
-        d="M15.53 12.943C20.232 12.068 21.5 10.5 21.5 10.5S18.5 6 12 6a10.3 10.3 0 00-3.2.5"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-        d="M6.53 7.56C3.768 8.932 2.5 10.5 2.5 10.5S5.5 15 12 15c1.116 0 2.15-.154 3.078-.434"
+        d="M4 4l16 16"
       />
     </svg>
   );
 }
 
 export default EyeOff;
-
