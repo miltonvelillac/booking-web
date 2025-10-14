@@ -6,7 +6,18 @@
   "login.passwordLabel": "Password",
   "login.forgotPassword": "Forgot password?",
   "login.submit": "Log in",
+  "auth.login.title": "Login",
 
-  "auth.login.title": "Login"
+  "app": { "name": "AC UI" },
+  "header": {
+    "title": "my APP",
+    "menuLabel": "Menu",
+    "nav": { "home": "Home", "about": "About", "contact": "Contact" }
+  },
+  "home": {
+    "title": "Key Features",
+    "card": { "title": "Title", "text": "hola" }
+  },
+  "footer": { "versionPrefix": "v" }
 }
 

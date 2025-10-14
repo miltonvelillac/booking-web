@@ -6,7 +6,18 @@
   "login.passwordLabel": "Contraseña",
   "login.forgotPassword": "¿Olvidaste tu contraseña?",
   "login.submit": "Iniciar sesión",
+  "auth.login.title": "Iniciar sesión",
 
-  "auth.login.title": "Iniciar sesión"
+  "app": { "name": "AC UI" },
+  "header": {
+    "title": "Mi APP",
+    "menuLabel": "Menú",
+    "nav": { "home": "Inicio", "about": "Acerca de", "contact": "Contacto" }
+  },
+  "home": {
+    "title": "Características Clave",
+    "card": { "title": "Título", "text": "hola" }
+  },
+  "footer": { "versionPrefix": "v" }
 }
 

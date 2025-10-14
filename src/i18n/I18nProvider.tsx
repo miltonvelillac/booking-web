@@ -1,15 +1,17 @@
 "use client";
 
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import baseTexts, { type Texts } from "@/content/texts";
 
 export type Locale = "en" | "es";
 
-type Messages = Record<string, string>;
+type Messages = Record<string, any>;
 
 type I18nContextValue = {
   locale: Locale;
   setLocale: (l: Locale) => void;
   t: (key: string, params?: Record<string, string | number>) => string;
+  texts: Texts;
 };
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
@@ -30,11 +32,21 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     return (localStorage.getItem("locale") as Locale) || "es";
   });
   const [messages, setMessages] = useState<Messages>({});
+  const [texts, setTexts] = useState<Texts>(baseTexts);
 
   useEffect(() => {
     let mounted = true;
     loadMessages(locale).then((m) => {
-      if (mounted) setMessages(m);
+      if (mounted) {
+        setMessages(m);
+        const merged: Texts = {
+          app: m.app ?? baseTexts.app,
+          header: m.header ?? baseTexts.header,
+          home: m.home ?? baseTexts.home,
+          footer: m.footer ?? baseTexts.footer,
+        };
+        setTexts(merged);
+      }
     });
     return () => {
       mounted = false;
@@ -55,7 +67,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     [messages]
   );
 
-  const value = useMemo<I18nContextValue>(() => ({ locale, setLocale, t }), [locale, setLocale, t]);
+  const value = useMemo<I18nContextValue>(() => ({ locale, setLocale, t, texts }), [locale, setLocale, t, texts]);
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
@@ -65,4 +77,3 @@ export function useI18n() {
   if (!ctx) throw new Error("useI18n must be used within I18nProvider");
   return ctx;
 }
-
