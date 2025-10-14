@@ -7,9 +7,11 @@ type HeaderProps = {
   title?: string;
 };
 
-export function Header({ title = "App Title" }: HeaderProps) {
+export function Header({ title }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const { texts } = useI18n();
+
+  title = title || texts.header.title;
 
   return (
     <>

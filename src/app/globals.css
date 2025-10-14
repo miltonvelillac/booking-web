@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f6f7f8;
   --foreground: #171717;
 }
 
@@ -14,13 +14,29 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #101c22;
     --foreground: #ededed;
+    --primary: #13a4ec;
+    --label: rgb(209 213 219 / var(--tw-text-opacity, 1));
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Work Sans", sans-serif;
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.text-primary {
+    --tw-text-opacity: 1;
+    color: var(--primary);
+}
+
+.dark\:text-gray-300:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: var(--label);
 }
