@@ -3,12 +3,12 @@
 import React from "react";
 import Input from "./Input";
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+export type InputEmailProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
   pattern?: string;
 };
 
-export const InputEmail = React.forwardRef<HTMLInputElement, InputProps>(
+export const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
   (
     {
       id,
@@ -34,6 +34,7 @@ export const InputEmail = React.forwardRef<HTMLInputElement, InputProps>(
         type="email"
         inputMode="email"
         autoComplete="email"
+        clearable={true}
         pattern={pattern ?? defaultPattern}
         className={className}
         {...rest}

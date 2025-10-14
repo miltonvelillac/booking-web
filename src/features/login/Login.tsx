@@ -1,7 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui';
-import { InputEmail } from '@/components/ui/Input-email';
+import { InputEmail } from '@/components/ui/InputEmail';
+import { InputPassword } from '@/components/ui/InputPassword';
 import Label from '@/components/ui/Label';
 import LinkElement from '@/components/ui/Link';
 
@@ -25,7 +26,7 @@ export default function Login() {
                     <Label label='Password' forInput='password' id='passwordLabel'/>
                     <LinkElement id='forgotPassword' label='Forgot password?' href='#' />
                 </div>
-                <input className="form-input block w-full h-12 px-4 rounded-lg bg-gray-100 dark:bg-gray-800 border-transparent focus:ring-primary focus:border-primary text-gray-900 dark:text-white" id="password" name="password" placeholder="••••••••" type="password"/>
+                <InputPassword id="password" name="password" placeholder="••••••••"/>
             </section>
             <div>
                 <Button label='Log in' />
