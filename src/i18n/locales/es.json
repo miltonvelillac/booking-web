@@ -1,0 +1,12 @@
+{
+  "login.title": "Bienvenido de nuevo",
+  "login.subtitle": "Inicia sesión para continuar tu aventura.",
+  "login.emailLabel": "Correo o usuario",
+  "login.emailPlaceholder": "tu@ejemplo.com",
+  "login.passwordLabel": "Contraseña",
+  "login.forgotPassword": "¿Olvidaste tu contraseña?",
+  "login.submit": "Iniciar sesión",
+
+  "auth.login.title": "Iniciar sesión"
+}
+
