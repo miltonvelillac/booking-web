@@ -6,6 +6,13 @@
   "login.passwordLabel": "Contraseña",
   "login.forgotPassword": "¿Olvidaste tu contraseña?",
   "login.submit": "Iniciar sesión",
+  "login.loading": "Cargando...",
+  "login.error.emailRequired": "El correo es requerido",
+  "login.error.emailInvalid": "Correo inválido",
+  "login.error.passwordRequired": "La contraseña es requerida",
+  "login.error.passwordMin": "Debe tener al menos {min} caracteres",
+  "login.error.generic": "Error al iniciar sesión",
+  "login.noAccount": "¿No tienes una cuenta?",
   "login.signup": "Crear Cuenta",
   "auth.login.title": "Iniciar sesión",
 

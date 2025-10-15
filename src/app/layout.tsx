@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`h-screen flex flex-col justify-between`}>
-        <I18nProvider initialLocale="en">
+        <I18nProvider>
           <Header/>
           <main className={`flex-1`}>
             <Providers>

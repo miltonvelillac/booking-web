@@ -6,6 +6,13 @@
   "login.passwordLabel": "Password",
   "login.forgotPassword": "Forgot password?",
   "login.submit": "Log in",
+  "login.loading": "Loading...",
+  "login.error.emailRequired": "Email is required",
+  "login.error.emailInvalid": "Invalid email",
+  "login.error.passwordRequired": "Password is required",
+  "login.error.passwordMin": "Must be at least {min} characters",
+  "login.error.generic": "Unable to sign in",
+  "login.noAccount": "Don't have an account?",
   "login.signup": "Sign up",
   "auth.login.title": "Login",
 
@@ -21,4 +28,3 @@
   },
   "footer": { "versionPrefix": "v" }
 }
-

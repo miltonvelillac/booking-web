@@ -8,7 +8,7 @@ import LinkElement from '@/components/ui/Link';
 import { useI18n } from '@/i18n';
 import { api } from '@/services/apiClient';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Login() {
     const { t } = useI18n();
@@ -18,13 +18,20 @@ export default function Login() {
     const [errors, setErrors] = useState<{ email?: string; password?: string; form?: string }>({});
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        setErrors({ ...errors, email: '' });
+    }, [email]);
+    useEffect(() => {
+        setErrors({ ...errors, password: '' });
+    }, [password]);
+
     const validate = () => {
         const next: { email?: string; password?: string } = {};
         const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-        if (!email) next.email = t('login.emailLabel') + ' es requerido';
-        else if (!emailPattern.test(email)) next.email = 'Email no válido';
-        if (!password) next.password = t('login.passwordLabel') + ' es requerida';
-        else if (password.length < 6) next.password = 'Debe tener al menos 6 caracteres';
+        if (!email) next.email = t('login.error.emailRequired');
+        else if (!emailPattern.test(email)) next.email = t('login.error.emailInvalid');
+        if (!password) next.password = t('login.error.passwordRequired');
+        else if (password.length < 6) next.password = t('login.error.passwordMin', { min: 6 });
         setErrors(next);
         return Object.keys(next).length === 0;
     };
@@ -38,7 +45,7 @@ export default function Login() {
             await api('/auth/login', { method: 'POST', body: { email, password } });
             router.push('/');
         } catch (err: any) {
-            setErrors({ form: err?.message || 'Error al iniciar sesión' });
+            setErrors({ form: err?.message || t('login.error.generic') });
         } finally {
             setLoading(false);
         }
@@ -85,15 +92,16 @@ export default function Login() {
                     <p className="text-sm text-red-600">{errors.form}</p>
                 )}
                 <div>
-                    <Button label={loading ? 'Cargando...' : t('login.submit')} type="submit" disabled={loading} />
+                    <Button label={loading ? t('login.loading') : t('login.submit')} type="submit" disabled={loading} />
                 </div>
             </form>
             <div className="mt-8 text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Don't have an account?
+                    {t('login.noAccount')}
                     <LinkElement id='signupLink' label={t('login.signup')} href='#' />
                 </p>
             </div>
         </section>
     );
 }
+
