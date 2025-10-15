@@ -25,6 +25,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       pattern,
       clearable,
+      disabled,
       onClear,
       ...rest
     },
@@ -92,6 +93,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type={type}
             placeholder={placeholder}
             pattern={pattern}
+            disabled={disabled}
             className={[base, border, withIconsLeft, withIconsRight, inputClassName]
               .filter(Boolean)
               .join(" ")}

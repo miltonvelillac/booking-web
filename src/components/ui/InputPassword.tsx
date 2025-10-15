@@ -10,7 +10,7 @@ export type InputPasswordProps = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
   (
-    { id, name, placeholder, error, pattern, className, inputClassName, ...rest },
+    { id, name, placeholder, error, pattern, className, inputClassName, disabled, ...rest },
     ref
   ) => {
     const [show, setShow] = useState(false);
@@ -27,6 +27,7 @@ export const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordPro
         error={error}
         type={show ? "text" : "password"}
         pattern={pattern}
+        disabled={disabled}
         rightIcon={
           <button
             type="button"

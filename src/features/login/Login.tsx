@@ -31,6 +31,8 @@ export default function Login() {
     const handleLoginSubmit = async (e: React.FormEvent): Promise<void> =>
         submitLogin(e, { email, password }, { setErrors, setLoading }, router, t);
 
+    const disableFields = () => loading;
+
     return (
         <section className="w-full max-w-md mx-auto">
             <div className='bg-white dark:bg-background/80 rounded-xl shadow-lg p-8'>
@@ -47,10 +49,11 @@ export default function Login() {
                         name="email"
                         placeholder={t('login.emailPlaceholder')}
                         value={email}
-                        onChange={(e) => { setEmail(e.target.value) }}
-                        onClear={() => { setEmail('') }}
+                        disabled={disableFields()}
                         error={errors.email}
                         autoComplete="email"
+                        onChange={(e) => { setEmail(e.target.value) }}
+                        onClear={() => { setEmail('') }}
                     />
                 </section>
                 <section>
@@ -63,9 +66,10 @@ export default function Login() {
                         name="password"
                         placeholder="••••••••"
                         value={password}
-                        onChange={(e) => { setPassword(e.target.value) }}
+                        disabled={disableFields()}
                         error={errors.password}
                         autoComplete="current-password"
+                        onChange={(e) => { setPassword(e.target.value) }}
                     />
                 </section>
                 {errors.form && (

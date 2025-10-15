@@ -21,14 +21,13 @@ export const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
       pattern,
       className,
       clearable,
-      onClear,
       inputClassName,
+      disabled,
+      onClear,
       ...rest
     },
     ref
   ) => {
-    // RFC5322-compliant email patterns can be very long; usamos una variante práctica
-    const defaultPattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}";
 
     return (
       <Input
@@ -42,7 +41,8 @@ export const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
         autoComplete="email"
         clearable={clearable ?? true}
         onClear={onClear}
-        pattern={pattern ?? defaultPattern}
+        pattern={pattern}
+        disabled={disabled}
         className={className}
         inputClassName={inputClassName}
         {...rest}
