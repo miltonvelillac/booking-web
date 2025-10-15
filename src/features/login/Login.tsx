@@ -10,10 +10,12 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { submitLogin } from './submit-login';
 import { validateLogin } from './validate-login';
+import { useAppDispatch } from '@/store/hooks';
 
 export default function Login() {
     const { t } = useI18n();
     const router = useRouter();
+    const dispatch = useAppDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState<{ email?: string; password?: string; form?: string }>({});
@@ -29,7 +31,7 @@ export default function Login() {
     }, [password]);
 
     const handleLoginSubmit = async (e: React.FormEvent): Promise<void> =>
-        submitLogin(e, { email, password }, { setErrors, setLoading }, router, t);
+        submitLogin(e, { email, password }, { setErrors, setLoading }, router, t, dispatch);
 
     const disableFields = () => loading;
 
