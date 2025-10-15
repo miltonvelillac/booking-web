@@ -5,6 +5,7 @@ import { selectIsAuthenticated } from "@/store/auth/authSlice";
 import { useAppSelector } from "@/store/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 type Props = { children: React.ReactNode };
 
@@ -38,7 +39,6 @@ export default function RouteGuard({ children }: Props) {
     }
   }, [isAuth, pathname, router]);
 
-  // Render children; redirects will take effect on client navigation
-  return checked ? <>{children}</> : null;
+  // Render children when ready; otherwise show a pleasant loader
+  return checked ? <>{children}</> : <LoadingScreen />;
 }
-
