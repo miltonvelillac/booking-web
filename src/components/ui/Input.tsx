@@ -57,6 +57,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const rightIconBase = 'cursor-pointer rounded p-1 hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600 text-gray-500 hover:text-gray-700';
 
     const errorId = error ? `${id ?? "input"}-error` : undefined;
+    const disabledStyles = disabled
+      ? 'bg-[var(--disable)] cursor-not-allowed focus:ring-0 focus:border-gray-300 dark:focus:border-gray-600'
+      : '';
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
       if (typeof (rest as any).value === "undefined") {
@@ -94,7 +97,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             placeholder={placeholder}
             pattern={pattern}
             disabled={disabled}
-            className={[base, border, withIconsLeft, withIconsRight, inputClassName]
+            className={[base, border, withIconsLeft, withIconsRight, disabled ? 'input-disabled' : '', disabledStyles, inputClassName]
               .filter(Boolean)
               .join(" ")}
             aria-invalid={!!error}
@@ -104,11 +107,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
 
           {(rightIcon || (clearable && hasValue)) && (
-            <span className="absolute inset-y-0 right-0 flex items-center pr-2 gap-1 text-gray-400">
+            <span className={["absolute inset-y-0 right-0 flex items-center pr-2 gap-1 text-gray-400", disabled ? "pointer-events-none opacity-70" : ""].filter(Boolean).join(" ") }>
               {rightIcon && (
                 <span className="flex items-center">{rightIcon}</span>
               )}
-              {clearable && hasValue && (
+              {clearable && hasValue && !disabled && (
                 <button
                   type="button"
                   aria-label="Clear input"

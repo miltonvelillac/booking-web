@@ -5,6 +5,7 @@
   --foreground: #171717;
   --primary: #13a4ec; /* color principal en modo claro */
   --label: #6b7280;   /* gris-500 aprox para textos secundarios en claro */
+  --disable: #e5e7eb; /* gris claro para fondos disabled en modo claro */
 }
 
 @theme inline {
@@ -22,6 +23,8 @@
     --foreground: #ededed;
     --primary: #13a4ec;
     --label: rgb(209 213 219 / var(--tw-text-opacity, 1));
+    /* color explícito para disabled en dark */
+    --disable: #374151; /* gray-700 */
   }
 }
 
@@ -37,3 +40,8 @@ body {
    manuales, puedes mantener estas clases utilitarias: */
 .bg-primary { background-color: var(--primary); }
 .text-primary { color: var(--primary); }
+
+/* Forzar estilos disabled en inputs cuando sea necesario */
+.input-disabled {
+  background-color: var(--disable) !important;
+}

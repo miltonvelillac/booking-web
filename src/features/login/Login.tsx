@@ -80,7 +80,7 @@ export default function Login() {
                 </div>
             </form>
             <div className="mt-8 text-center">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400 flex flex-row justify-center gap-2">
                     {t('login.noAccount')}
                     <LinkElement id='signupLink' label={t('login.signup')} href='#' />
                 </p>
