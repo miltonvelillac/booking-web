@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import Brand from "./Brand";
 import { useI18n } from "@/i18n";
 import NavItems from "./NavItems";
+import { navigateService } from "@/services/navigate/navigateService";
+import SignUpBtn from "@/features/signUpBtn/signUpBtn";
 
 type HeaderProps = { title?: string };
 
@@ -13,9 +16,9 @@ export default function MobileHeader({ title }: HeaderProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-black/10 dark:border-white/15 bg-background/80 backdrop-blur md:hidden h-10">
+      <header className="sticky top-0 z-40 border-b border-black/10 dark:border-white/15 bg-background/80 backdrop-blur md:hidden h-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid grid-cols-[auto_1fr_auto] items-center h-5">
+          <div className="grid grid-cols-[auto_1fr_auto] items-center h-12">
             <button
               type="button"
               aria-label="Open menu"
@@ -29,9 +32,7 @@ export default function MobileHeader({ title }: HeaderProps) {
               </svg>
             </button>
 
-            <h1 className="justify-self-center text-base sm:text-lg font-semibold tracking-tight">
-              {displayTitle}
-            </h1>
+            <div className="justify-self-center"><Brand name={displayTitle} /></div>
 
             <div className="justify-self-end" />
           </div>
@@ -59,9 +60,21 @@ export default function MobileHeader({ title }: HeaderProps) {
             <nav className="mt-4">
               <NavItems layout="vertical" onItemClick={() => setOpen(false)} />
             </nav>
+
+            <div className="mt-6">
+              <SignUpBtn />
+            </div>
           </div>
         </div>
       )}
     </>
   );
 }
+
+
+
+
+
+
+
+
