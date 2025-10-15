@@ -6,9 +6,10 @@ import { InputPassword } from '@/components/ui/InputPassword';
 import Label from '@/components/ui/Label';
 import LinkElement from '@/components/ui/Link';
 import { useI18n } from '@/i18n';
-import { api } from '@/services/apiClient';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { submitLogin } from './submit-login';
+import { validateLogin } from './validate-login';
 
 export default function Login() {
     const { t } = useI18n();
@@ -19,37 +20,16 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setErrors({ ...errors, email: '' });
+        const { email: emailError } = validateLogin({ email, password}, t);
+        if(!emailError || !email) setErrors({ ...errors, email: '' });
     }, [email]);
     useEffect(() => {
-        setErrors({ ...errors, password: '' });
+        const { password: passwordError } = validateLogin({ email, password}, t);
+        if(!passwordError || !password) setErrors({ ...errors, password: '' });
     }, [password]);
 
-    const validate = () => {
-        const next: { email?: string; password?: string } = {};
-        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-        if (!email) next.email = t('login.error.emailRequired');
-        else if (!emailPattern.test(email)) next.email = t('login.error.emailInvalid');
-        if (!password) next.password = t('login.error.passwordRequired');
-        else if (password.length < 6) next.password = t('login.error.passwordMin', { min: 6 });
-        setErrors(next);
-        return Object.keys(next).length === 0;
-    };
-
-    const onSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setErrors({});
-        if (!validate()) return;
-        try {
-            setLoading(true);
-            await api('/auth/login', { method: 'POST', body: { email, password } });
-            router.push('/');
-        } catch (err: any) {
-            setErrors({ form: err?.message || t('login.error.generic') });
-        } finally {
-            setLoading(false);
-        }
-    };
+    const handleLoginSubmit = async (e: React.FormEvent): Promise<void> =>
+        submitLogin(e, { email, password }, { setErrors, setLoading }, router, t);
 
     return (
         <section className="w-full max-w-md mx-auto">
@@ -59,7 +39,7 @@ export default function Login() {
                     <p className="text-gray-500 dark:text-gray-400 mt-2">{t('login.subtitle')}</p>
                 </div>
             </div>
-            <form className="space-y-6" onSubmit={onSubmit} noValidate>
+            <form className="space-y-6" onSubmit={handleLoginSubmit} noValidate>
                 <section>
                     <Label label={t('login.emailLabel')} forInput='email' id='emailLabel' />
                     <InputEmail
@@ -67,8 +47,8 @@ export default function Login() {
                         name="email"
                         placeholder={t('login.emailPlaceholder')}
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        onClear={() => setEmail('')}
+                        onChange={(e) => { setEmail(e.target.value) }}
+                        onClear={() => { setEmail('') }}
                         error={errors.email}
                         autoComplete="email"
                     />
@@ -83,7 +63,7 @@ export default function Login() {
                         name="password"
                         placeholder="••••••••"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => { setPassword(e.target.value) }}
                         error={errors.password}
                         autoComplete="current-password"
                     />
@@ -104,4 +84,3 @@ export default function Login() {
         </section>
     );
 }
-
