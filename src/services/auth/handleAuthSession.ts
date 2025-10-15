@@ -1,7 +1,7 @@
-import { store } from "@/store/store";
-import { AuthStorage } from "../storage/auth/authStorage";
 import { setSession } from "@/store/auth/authSlice";
+import { store } from "@/store/store";
 import { Unsubscribe } from "@reduxjs/toolkit";
+import { AuthStorage } from "../storage/auth/authStorage";
 
 export class HandleAuthSession {
     hydrateSession() {
@@ -27,5 +27,10 @@ export class HandleAuthSession {
                 console.error('it was not possible to set the user session to the storage');
             }
         });
+    }
+
+    isAuth(props: { isAuthStore: boolean }): boolean {
+        const { isAuthStore } = props;
+        return isAuthStore || !!AuthStorage.getAuth()?.token;
     }
 }

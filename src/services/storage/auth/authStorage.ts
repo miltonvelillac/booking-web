@@ -11,6 +11,6 @@ export class AuthStorage {
 
     static setAuth(props: { value: AuthUserModel }): void {
         const { value } = props;
-        HandleStorage.setLocalItem({ name: AuthStorage.authName, value: JSON.stringify(value) })
+        HandleStorage.setLocalItem<AuthUserModel>({ name: AuthStorage.authName, value: value });
     }
 }
