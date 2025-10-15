@@ -6,15 +6,13 @@ import { InputPassword } from '@/components/ui/InputPassword';
 import Label from '@/components/ui/Label';
 import LinkElement from '@/components/ui/Link';
 import { useI18n } from '@/i18n';
-import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/store/hooks';
 import { useEffect, useState } from 'react';
 import { submitLogin } from './submit-login';
 import { validateLogin } from './validate-login';
-import { useAppDispatch } from '@/store/hooks';
 
 export default function Login() {
     const { t } = useI18n();
-    const router = useRouter();
     const dispatch = useAppDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,7 +29,7 @@ export default function Login() {
     }, [password]);
 
     const handleLoginSubmit = async (e: React.FormEvent): Promise<void> =>
-        submitLogin(e, { email, password }, { setErrors, setLoading }, router, t, dispatch);
+        submitLogin(e, { email, password }, { setErrors, setLoading }, t, dispatch);
 
     const disableFields = () => loading;
 

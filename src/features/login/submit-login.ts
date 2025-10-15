@@ -1,7 +1,7 @@
 import { AuthApi } from "@/services/api/loginApi/loginApi";
 import { setError as authError, setLoading as authLoading, setSession } from "@/store/auth/authSlice";
 import { AppDispatch } from "@/store/store";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { navigateService } from "@/services/navigate/navigateService";
 import { Dispatch, SetStateAction } from "react";
 import { validateLogin } from "./validate-login";
 
@@ -13,7 +13,6 @@ export async function submitLogin(
     e: React.FormEvent,
     { email, password }: LoginFields,
     { setErrors, setLoading }: LoginStates,
-    router: AppRouterInstance,
     t: (key: string, params?: Record<string, string | number>) => string,
     dispatch: AppDispatch
 ): Promise<void> {
@@ -29,7 +28,7 @@ export async function submitLogin(
         const user = await authApi.loginApi({ email, password });
         if (!user?.token) throw new Error('Missing token');
         dispatch(setSession({ user }));
-        router.push('/');
+        navigateService.goToHome();
     } catch (err: any) {
         const msg = err?.message || t('login.error.generic');
         setErrors({ form: msg });

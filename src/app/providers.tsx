@@ -6,6 +6,7 @@ import { store } from '@/store/store';
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import RouteGuard from './route-guard';
+import { NavigateProvider } from '@/services/navigate/NavigateProvider';
 
 type ProvidersProps = {
   children: React.ReactNode;
@@ -23,7 +24,9 @@ export default function Providers({ children }: ProvidersProps) {
   return (
     <Provider store={store}>
       <I18nProvider>
-        <RouteGuard>{children}</RouteGuard>
+        <NavigateProvider>
+          <RouteGuard>{children}</RouteGuard>
+        </NavigateProvider>
       </I18nProvider>
     </Provider>
   );
