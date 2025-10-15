@@ -2,6 +2,8 @@
 
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import baseTexts, { type Texts } from "@/content/texts";
+import enBundle from './locales/en.json';
+import esBundle from './locales/es.json';
 
 export type Locale = "en" | "es";
 
@@ -16,41 +18,30 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
-async function loadMessages(locale: Locale): Promise<Messages> {
-  switch (locale) {
-    case "es":
-      return (await import("./locales/es.json")).default as Messages;
-    case "en":
-    default:
-      return (await import("./locales/en.json")).default as Messages;
-  }
-}
+const bundles: Record<Locale, Messages> = {
+  en: enBundle as Messages,
+  es: esBundle as Messages,
+};
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
     if (typeof window === "undefined") return "es"; // default SSR
     return (localStorage.getItem("locale") as Locale) || "es";
   });
-  const [messages, setMessages] = useState<Messages>({});
+  const initialMessages = bundles[(typeof window === 'undefined' ? 'es' : (localStorage.getItem('locale') as Locale) || 'es')];
+  const [messages, setMessages] = useState<Messages>(initialMessages);
   const [texts, setTexts] = useState<Texts>(baseTexts);
 
   useEffect(() => {
-    let mounted = true;
-    loadMessages(locale).then((m) => {
-      if (mounted) {
-        setMessages(m);
-        const merged: Texts = {
-          app: m.app ?? baseTexts.app,
-          header: m.header ?? baseTexts.header,
-          home: m.home ?? baseTexts.home,
-          footer: m.footer ?? baseTexts.footer,
-        };
-        setTexts(merged);
-      }
-    });
-    return () => {
-      mounted = false;
+    const m = bundles[locale];
+    setMessages(m);
+    const merged: Texts = {
+      app: m.app ?? baseTexts.app,
+      header: m.header ?? baseTexts.header,
+      home: m.home ?? baseTexts.home,
+      footer: m.footer ?? baseTexts.footer,
     };
+    setTexts(merged);
   }, [locale]);
 
   const setLocale = useCallback((l: Locale) => {
