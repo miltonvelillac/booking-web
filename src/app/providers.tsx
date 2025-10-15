@@ -7,6 +7,8 @@ import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import RouteGuard from './route-guard';
 import { NavigateProvider } from '@/services/navigate/NavigateProvider';
+import { navigateService } from '@/services/navigate/navigateService';
+import { useRouter } from 'next/navigation';
 
 type ProvidersProps = {
   children: React.ReactNode;

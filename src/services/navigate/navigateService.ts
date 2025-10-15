@@ -46,6 +46,10 @@ class NavigateService {
     this.push('/auth/login');
   }
 
+  goToSignIn(): void {
+    this.push('/auth/sign');
+  }
+
   private get router(): AppRouterInstance {
     if (!this._router) throw new Error('NavigateService not initialized');
     return this._router;

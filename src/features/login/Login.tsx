@@ -6,6 +6,7 @@ import { InputPassword } from '@/components/ui/InputPassword';
 import Label from '@/components/ui/Label';
 import LinkElement from '@/components/ui/Link';
 import { useI18n } from '@/i18n';
+import { navigateService } from '@/services/navigate/navigateService';
 import { useAppDispatch } from '@/store/hooks';
 import { useEffect, useState } from 'react';
 import { submitLogin } from './submit-login';
@@ -82,7 +83,12 @@ export default function Login() {
             <div className="mt-8 text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400 flex flex-row justify-center gap-2">
                     {t('login.noAccount')}
-                    <LinkElement id='signupLink' label={t('login.signup')} href='#' />
+                    <LinkElement
+                      id='signupLink'
+                      label={t('login.signup')}
+                      href="#"
+                      onClick={(e) => { e.preventDefault(); navigateService.goToSignIn(); }}
+                    />
                 </p>
             </div>
         </section>

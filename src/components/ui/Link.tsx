@@ -1,20 +1,20 @@
 import React from "react";
 
-type LinkProps = {
+type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   label: string;
-  href: string;
-  id?: string;
-  className?: string;
-} & React.LabelHTMLAttributes<HTMLLabelElement>;
+};
 
-export function LinkElement({ label, id, className, href }: LinkProps) {
+export function LinkElement({ label, className, ...rest }: LinkProps) {
   const base = "text-sm font-medium text-primary hover:underline";
 
-  return <a
-    id={id}
-    className={[base, className].filter(Boolean).join(" ")}
-    href={href}
-    >{label}</a>
+  return (
+    <a
+      className={[base, className].filter(Boolean).join(" ")}
+      {...rest}
+    >
+      {label}
+    </a>
+  );
 }
 
 export default LinkElement;
