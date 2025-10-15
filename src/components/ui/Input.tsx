@@ -77,48 +77,50 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div className={["relative", className].filter(Boolean).join(" ")}>
-        {leftIcon && (
-          <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-            {leftIcon}
-          </span>
-        )}
+      <div className={className}>
+        <div className="relative">
+          {leftIcon && (
+            <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+              {leftIcon}
+            </span>
+          )}
 
-        <input
-          ref={inputRef}
-          id={id}
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          pattern={pattern}
-          className={[base, border, withIconsLeft, withIconsRight, inputClassName]
-            .filter(Boolean)
-            .join(" ")}
-          aria-invalid={!!error}
-          aria-describedby={errorId}
-          onChange={handleChange}
-          {...rest}
-        />
+          <input
+            ref={inputRef}
+            id={id}
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            pattern={pattern}
+            className={[base, border, withIconsLeft, withIconsRight, inputClassName]
+              .filter(Boolean)
+              .join(" ")}
+            aria-invalid={!!error}
+            aria-describedby={errorId}
+            onChange={handleChange}
+            {...rest}
+          />
 
-        {(rightIcon || (clearable && hasValue)) && (
-          <span className="absolute inset-y-0 right-0 flex items-center pr-2 gap-1 text-gray-400">
-            {rightIcon && (
-              <span className="pointer-events-none flex items-center">{rightIcon}</span>
-            )}
-            {clearable && hasValue && (
-              <button
-                type="button"
-                aria-label="Clear input"
-                onClick={handleClear}
-                className={[cursorRightIcon, rightIconBase].join(' ')}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                  <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 11-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
-                </svg>
-              </button>
-            )}
-          </span>
-        )}
+          {(rightIcon || (clearable && hasValue)) && (
+            <span className="absolute inset-y-0 right-0 flex items-center pr-2 gap-1 text-gray-400">
+              {rightIcon && (
+                <span className="flex items-center">{rightIcon}</span>
+              )}
+              {clearable && hasValue && (
+                <button
+                  type="button"
+                  aria-label="Clear input"
+                  onClick={handleClear}
+                  className={[cursorRightIcon, rightIconBase].join(' ')}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                    <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 11-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              )}
+            </span>
+          )}
+        </div>
 
         {error && (
           <p id={errorId} className="mt-1 text-sm text-red-600">
