@@ -6,6 +6,7 @@
   "login.passwordLabel": "Password",
   "login.forgotPassword": "Forgot password?",
   "login.submit": "Log in",
+  "login.signup": "Sign up",
   "auth.login.title": "Login",
 
   "app": { "name": "AC UI" },
