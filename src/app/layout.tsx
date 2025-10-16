@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import Header from "@/components/header/Header";
-import { I18nProvider } from "@/i18n/I18nProvider";
 import Footer from "@/components/footer/Footer";
 
 const geistSans = Geist({
@@ -30,16 +29,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`h-screen flex flex-col justify-between`}>
-        <I18nProvider>
-          <Header/>
+        <Providers>
+          <Header />
           <main className={`flex-1`}>
-            <Providers>
-              {children}
-            </Providers>
+            {children}
           </main>
-           <Footer/>
-        </I18nProvider>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
 }
+

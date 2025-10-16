@@ -12,7 +12,7 @@ export default function SignUpBtn() {
         <button
             type="button"
             onClick={() => navigateService.goToSignIn()}
-            className="px-4 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors cursor-pointer"
+            className="w-full px-4 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors cursor-pointer"
         >
             {label}
         </button>

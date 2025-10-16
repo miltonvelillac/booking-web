@@ -14,6 +14,7 @@
   "login.error.generic": "Error al iniciar sesión",
   "login.noAccount": "¿No tienes una cuenta?",
   "login.signup": "Crear Cuenta",
+  "login.logout": "Cerrar Sesión",
   "auth.login.title": "Iniciar sesión",
   "common.loading": "Cargando…",
   "common.loadingApp": "Cargando la aplicación…",

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import Brand from "./Brand";
-import { useI18n } from "@/i18n";
-import NavItems from "./NavItems";
-import { navigateService } from "@/services/navigate/navigateService";
 import SignUpBtn from "@/features/signUpBtn/signUpBtn";
+import { useI18n } from "@/i18n";
+import { signUpService } from "@/services/signUp/signUpService";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import Brand from "./Brand";
+import NavItems from "./NavItems";
 
 type HeaderProps = { title?: string };
 
@@ -13,6 +14,8 @@ export default function MobileHeader({ title }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const { texts } = useI18n();
   const displayTitle = title || texts.header.title;
+  const pathname = usePathname();
+  const showSignUp = signUpService.showSignUpBtn(pathname); 
 
   return (
     <>
@@ -32,7 +35,9 @@ export default function MobileHeader({ title }: HeaderProps) {
               </svg>
             </button>
 
-            <div className="justify-self-center"><Brand name={displayTitle} /></div>
+            <div className="justify-self-center">
+              <Brand name={displayTitle} />
+            </div>
 
             <div className="justify-self-end" />
           </div>
@@ -57,12 +62,16 @@ export default function MobileHeader({ title }: HeaderProps) {
               </button>
             </div>
 
-            <nav className="mt-4">
-              <NavItems layout="vertical" onItemClick={() => setOpen(false)} />
-            </nav>
+            <div className="flex flex-col justify-between h-full">
+              <nav className="mt-4">
+                <NavItems layout="vertical" onItemClick={() => setOpen(false)} />
+              </nav>
 
-            <div className="mt-6">
-              <SignUpBtn />
+              {showSignUp && (
+                <div className="mb-10">
+                  <SignUpBtn />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -70,11 +79,6 @@ export default function MobileHeader({ title }: HeaderProps) {
     </>
   );
 }
-
-
-
-
-
 
 
 

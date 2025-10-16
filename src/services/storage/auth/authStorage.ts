@@ -13,4 +13,8 @@ export class AuthStorage {
         const { value } = props;
         HandleStorage.setLocalItem<AuthUserModel>({ name: AuthStorage.authName, value: value });
     }
+
+    static clearAuth(): void {
+        HandleStorage.removeLocalItem({ name: AuthStorage.authName });
+    }
 }

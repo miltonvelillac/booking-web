@@ -1,11 +1,9 @@
 "use client";
 
-import React from "react";
+import SessionBtn from "@/features/sessionButton/sessionButton";
 import { useI18n } from "@/i18n";
-import NavItems from "./NavItems";
 import Brand from "./Brand";
-import { navigateService } from "@/services/navigate/navigateService";
-import SignUpBtn from "@/features/signUpBtn/signUpBtn";
+import NavItems from "./NavItems";
 
 type HeaderProps = { title?: string };
 
@@ -24,7 +22,7 @@ export default function DesktopHeader({ title }: HeaderProps) {
             <NavItems layout="horizontal" />
           </nav>
           <div className="justify-self-end">
-            <SignUpBtn />
+            <SessionBtn />
           </div>
         </div>
       </div>

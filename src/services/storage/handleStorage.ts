@@ -12,4 +12,10 @@ export class HandleStorage {
         localStorage.setItem(name, JSON.stringify(value));
     }
 
+    static removeLocalItem(props: { name: string }): void {
+        if (typeof window === "undefined") return;
+        const { name } = props;
+        localStorage.removeItem(name);
+    }
+
 }

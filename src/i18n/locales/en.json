@@ -14,6 +14,7 @@
   "login.error.generic": "Unable to sign in",
   "login.noAccount": "Don't have an account?",
   "login.signup": "Sign up",
+  "login.logout": "Log out",
   "auth.login.title": "Login",
   "common.loading": "Loading...",
   "common.loadingApp": "Loading application…",
