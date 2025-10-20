@@ -14,6 +14,7 @@ export function Button({
   type = "button",
   id = "",
   disabled,
+  tabIndex,
   ...rest
 }: ButtonProps) {
   const base =
@@ -28,6 +29,7 @@ export function Button({
       id={id}
       disabled={disabled}
       className={[base, styles, cursor, hover, className].filter(Boolean).join(" ")}
+      tabIndex={typeof tabIndex === 'number' ? tabIndex : 0}
       {...rest}
     >
       {label}

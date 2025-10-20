@@ -22,6 +22,7 @@ export const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
       className,
       clearable,
       inputClassName,
+      tabIndex,
       disabled,
       onClear,
       ...rest
@@ -45,6 +46,7 @@ export const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
         disabled={disabled}
         className={className}
         inputClassName={inputClassName}
+        tabIndex={tabIndex}
         {...rest}
       />
     );

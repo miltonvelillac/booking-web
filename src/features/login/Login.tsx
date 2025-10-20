@@ -52,7 +52,9 @@ export default function Login() {
                         name="email"
                         placeholder={t('login.emailPlaceholder')}
                         value={email}
+                        autoFocus
                         disabled={disableFields()}
+                        tabIndex={1}
                         error={errors.email}
                         autoComplete="email"
                         onChange={(e) => { setEmail(e.target.value) }}
@@ -62,15 +64,16 @@ export default function Login() {
                 <section>
                     <div className="flex items-center justify-between mb-2">
                         <Label label={t('login.passwordLabel')} forInput='password' id='passwordLabel' />
-                        <LinkElement id='forgotPassword' label={t('login.forgotPassword')} href='#' />
+                        <LinkElement id='forgotPassword' label={t('login.forgotPassword')} href='#' tabIndex={5} />
                     </div>
                     <InputPassword
                         id="password"
                         name="password"
                         placeholder="••••••••"
-                        value={password}
-                        disabled={disableFields()}
-                        error={errors.password}
+                         value={password}
+                         disabled={disableFields()}
+                         tabIndex={2}
+                         error={errors.password}
                         autoComplete="current-password"
                         onChange={(e) => { setPassword(e.target.value) }}
                     />
@@ -79,7 +82,12 @@ export default function Login() {
                     <p className="text-sm text-red-600">{errors.form}</p>
                 )}
                 <div>
-                    <Button label={loading ? t('common.loading') : t('login.submit')} type="submit" disabled={loading} />
+                    <Button
+                        label={loading ? t('common.loading') : t('login.submit')}
+                        type="submit"
+                        disabled={loading}
+                        tabIndex={3}
+                    />
                 </div>
             </form>
             <div className="mt-8 text-center">
@@ -89,6 +97,7 @@ export default function Login() {
                       id='signupLink'
                       label={t('login.signup')}
                       href="#"
+                      tabIndex={4}
                       onClick={(e) => { e.preventDefault(); navigateService.goToSignIn(); }}
                     />
                 </p>

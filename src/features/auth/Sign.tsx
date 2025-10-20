@@ -48,11 +48,13 @@ export default function Sign() {
         <section>
           <Label label={t('signup.emailLabel')} forInput='email' id='emailLabel' />
           <InputEmail
+            autoFocus
             id='email'
             name='email'
             placeholder={t('signup.emailPlaceholder')}
             value={email}
             disabled={disableFields()}
+            tabIndex={1}
             error={errors.email}
             onChange={(e) => { setEmail(e.target.value) }}
             onClear={() => { setEmail('') }}
@@ -68,6 +70,7 @@ export default function Sign() {
             disabled={disableFields()}
             error={errors.password}
             autoComplete="current-password"
+            tabIndex={2}
             onChange={(e) => { setPassword(e.target.value) }}
           />
         </section>
@@ -81,11 +84,12 @@ export default function Sign() {
             disabled={disableFields()}
             error={errors.repeatedPassword}
             autoComplete="current-password"
+            tabIndex={3}
             onChange={(e) => { setRepeatedPassword(e.target.value) }}
           />
         </section>
         <div className='mt-5'>
-          <Button onClick={handleLoginSubmit} label={loading ? t('common.loading') : t('signup.submit')} type="button" disabled={loading} />
+          <Button onClick={handleLoginSubmit} label={loading ? t('common.loading') : t('signup.submit')} type="button" disabled={loading} tabIndex={4} />
         </div>
       </form>
     </section>

@@ -27,6 +27,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       clearable,
       disabled,
       onClear,
+      tabIndex,
       ...rest
     },
     ref
@@ -102,6 +103,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               .join(" ")}
             aria-invalid={!!error}
             aria-describedby={errorId}
+            tabIndex={typeof tabIndex === 'number' ? tabIndex : 0}
             onChange={handleChange}
             {...rest}
           />
@@ -116,6 +118,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                   type="button"
                   aria-label="Clear input"
                   onClick={handleClear}
+                  tabIndex={typeof tabIndex === 'number' ? tabIndex + 1 : 0}
                   className={[cursorRightIcon, rightIconBase].join(' ')}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
