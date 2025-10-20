@@ -11,6 +11,8 @@ import { useAppDispatch } from '@/store/hooks';
 import { useEffect, useState } from 'react';
 import { submitLogin } from './submit-login';
 import { validateLogin } from './validate-login';
+import Subtitle from '@/components/ui/SubTitle';
+import Title from '@/components/ui/Title';
 
 export default function Login() {
     const { t } = useI18n();
@@ -38,8 +40,8 @@ export default function Login() {
         <section className="w-full max-w-md mx-auto">
             <div className='bg-white dark:bg-background/80 rounded-xl shadow-lg p-8'>
                 <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{t('login.title')}</h2>
-                    <p className="text-gray-500 dark:text-gray-400 mt-2">{t('login.subtitle')}</p>
+                    <Title label={t('login.title')}/>
+                    <Subtitle label={t('login.subtitle')}/>
                 </div>
             </div>
             <form className="space-y-6" onSubmit={handleLoginSubmit} noValidate>
@@ -77,7 +79,7 @@ export default function Login() {
                     <p className="text-sm text-red-600">{errors.form}</p>
                 )}
                 <div>
-                    <Button label={loading ? t('login.loading') : t('login.submit')} type="submit" disabled={loading} />
+                    <Button label={loading ? t('common.loading') : t('login.submit')} type="submit" disabled={loading} />
                 </div>
             </form>
             <div className="mt-8 text-center">
