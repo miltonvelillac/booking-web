@@ -1,0 +1,32 @@
+/* Generic entrance animations */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 780ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none; }
+}
+
+/* Animation delay utilities */
+.animate-delay-0   { animation-delay: 0ms; }
+.animate-delay-75  { animation-delay: 75ms; }
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-150 { animation-delay: 150ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-delay-0,
+  .animate-delay-75,
+  .animate-delay-100,
+  .animate-delay-150,
+  .animate-delay-200,
+  .animate-delay-300,
+  .animate-delay-500 { animation-delay: 0ms; }
+}

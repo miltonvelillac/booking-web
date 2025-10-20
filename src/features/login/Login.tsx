@@ -37,7 +37,7 @@ export default function Login() {
     const disableFields = () => loading;
 
     return (
-        <section className="w-full max-w-md mx-auto">
+        <section className="w-full max-w-md mx-auto animate-fade-in-up">
             <div className='bg-white dark:bg-background/80 rounded-xl shadow-lg p-8'>
                 <div className="text-center mb-8">
                     <Title label={t('login.title')}/>

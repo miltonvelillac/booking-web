@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "@/styles/animations.css";
 import Providers from "./providers";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import PageTransition from "@/components/transitions/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +34,9 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className={`flex-1`}>
-            {children}
+            <PageTransition>
+              {children}
+            </PageTransition>
           </main>
           <Footer />
         </Providers>
@@ -40,4 +44,3 @@ export default function RootLayout({
     </html>
   );
 }
-
